@@ -13,6 +13,7 @@ test("when a user can fill out and submits the form", async () => {
   const lastNameInput = screen.getByLabelText(/last name/i);
   const emailInput = screen.getByLabelText(/email/i);
   const messageInput = screen.getByLabelText(/message/i);
+  const submitButton = screen.getByRole("button", { value: /submit/i });
 
   //   console.log(firstNameInput);
   userEvent.type(firstNameInput, "Xavier");
@@ -25,4 +26,9 @@ test("when a user can fill out and submits the form", async () => {
 
   //   console.log(messageInput);
   userEvent.type(messageInput, "all these words");
+
+  userEvent.click(submitButton);
+
+  expect(firstNameInput).toBeTruthy;
+  expect(emailInput).toBeVisible();
 });
